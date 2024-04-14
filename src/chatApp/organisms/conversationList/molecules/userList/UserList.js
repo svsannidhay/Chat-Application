@@ -5,16 +5,30 @@ import PropTypes from 'prop-types';
 import _noop from 'lodash/noop';
 
 // Constants
-import { AVATAR_ALT, DEFAULT_AVATAR_SRC, EMPTY_OBJECT } from '../../../../constants/chatApp.general';
+import {
+  AVATAR_ALT,
+  DEFAULT_AVATAR_SRC,
+  EMPTY_OBJECT,
+} from '../../../../constants/chatApp.general';
 
 // Helpers
-import { getDisplayName, getSelectedClassName, getStyles } from './helpers/userList.general';
+import {
+  getDisplayName,
+  getSelectedClassName,
+  getStyles,
+} from './helpers/userList.general';
 
 // Styles
 import style from './userList.module.css';
 
 const UserList = (props) => {
-  const { userMetadata, selectedUserId, setSelectedUserId, height, currentUserInfo } = props;
+  const {
+    userMetadata,
+    selectedUserId,
+    setSelectedUserId,
+    height,
+    currentUserInfo,
+  } = props;
 
   const renderUser = useCallback(
     (userId) => {
@@ -27,7 +41,7 @@ const UserList = (props) => {
           className={`${style.user} ${selectedClassName}`}
           onClick={() => setSelectedUserId(userId)}
         >
-          <img className={style.avatar} src={avatar} alt={AVATAR_ALT}/>
+          <img className={style.avatar} src={avatar} alt={AVATAR_ALT} />
           <div className={style.userName}>{displayName}</div>
         </div>
       );
@@ -57,7 +71,7 @@ UserList.propTypes = {
 UserList.defaultProps = {
   userMetadata: EMPTY_OBJECT,
   currentUserInfo: EMPTY_OBJECT,
-  selectedUserId: '',
+  selectedUserId: undefined,
   setSelectedUserId: _noop,
   height: 0,
 };

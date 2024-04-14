@@ -1,0 +1,23 @@
+.chatWindowHeader {
+  background-color: rgb(144, 144, 254);
+  height: 6.4rem;
+}
+
+.avatar {
+  height: 1.6rem;
+  width: 1.6rem;
+  margin-right: 1.2rem;
+  border-radius: 4px;
+}
+
+.userInfo {
+  margin-left: 2.4rem;
+  height: 6.4rem;
+  display: flex;
+  align-items: center;
+}
+
+.userName {
+  color: #ffff;
+  font-size: 1.6rem;
+}

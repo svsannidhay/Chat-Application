@@ -9,9 +9,11 @@ const CONVERSATION_LIST_HEADER_TEXT = 'Chat';
 const ConversationListHeader = () => {
   return (
     <div className={style.conversationListHeader}>
-      <div className={style.conversationListHeaderText}>{CONVERSATION_LIST_HEADER_TEXT}</div>
+      <div className={style.conversationListHeaderText}>
+        {CONVERSATION_LIST_HEADER_TEXT}
+      </div>
     </div>
-  )
+  );
 };
 
 export default memo(ConversationListHeader);
