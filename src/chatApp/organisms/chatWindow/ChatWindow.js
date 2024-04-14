@@ -3,12 +3,15 @@ import PropTypes from 'prop-types';
 
 // Constants
 import { EMPTY_OBJECT } from '../../constants/chatApp.general';
+import { CHAT_WINDOW_HEADER_HEIGHT } from './constants/chatWindow.general';
 
 // Components
-import ChatWindowHeader from './chatWindowHeader';
+import ChatWindowHeader from './molecules/chatWindowHeader';
+import ConversationPage from './organisms/conversationPage/ConversationPage';
 
 // Styles
 import style from './chatWindow.module.css';
+
 
 const ChatWindow = (props) => {
   const { userMetadata, currentUserInfo, selectedUserId, height } = props;
@@ -16,6 +19,12 @@ const ChatWindow = (props) => {
   return (
     <div className={style.chatWindowContainer}>
       <ChatWindowHeader
+        selectedUserId={selectedUserId}
+        userMetadata={userMetadata}
+        currentUserInfo={currentUserInfo}
+      />
+      <ConversationPage 
+        height={height - CHAT_WINDOW_HEADER_HEIGHT}
         selectedUserId={selectedUserId}
         userMetadata={userMetadata}
         currentUserInfo={currentUserInfo}

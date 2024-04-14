@@ -1,6 +1,7 @@
 .chatWindowHeader {
   background-color: rgb(144, 144, 254);
   height: 6.4rem;
+  border-bottom: 2px solid rgb(82, 82, 82);
 }
 
 .avatar {

@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, memo } from 'react';
 import PropTypes from 'prop-types';
 
 // Constants
@@ -6,7 +6,7 @@ import {
   AVATAR_ALT,
   EMPTY_OBJECT,
   NO_CONVERSATION_SELECTED,
-} from '../../../constants/chatApp.general';
+} from '../../../../constants/chatApp.general';
 
 // Helpers
 import { getUserInfoToRender } from './helpers/chatWindowHeader.general';
@@ -44,4 +44,4 @@ ChatWindowHeader.defaultProps = {
   currentUserInfo: EMPTY_OBJECT,
 };
 
-export default ChatWindowHeader;
+export default memo(ChatWindowHeader);

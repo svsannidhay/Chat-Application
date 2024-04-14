@@ -1,0 +1,30 @@
+.chatCardContainer {
+  background-color: rgba(0, 0, 0, 0.522);
+  border: 1px solid rgb(115, 115, 115);
+  border-radius: 5px;
+  max-height: 30rem;
+  min-height: 8rem;
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+.senderDetailContainer {
+  display: flex;
+}
+
+.avatar {
+  height: 1.6rem;
+  width: 1.6rem;
+  border-radius: 4px;
+  margin: 0rem 0.8rem 1.2rem 0rem; 
+}
+
+.senderName {
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+.message {
+  font-size: 1.4rem;
+  color: #fff;
+}
