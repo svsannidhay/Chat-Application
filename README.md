@@ -49,3 +49,79 @@ Code Architecture
 2. Since we are going to use Backend for this application we are going to have few hacks to replicate some flows.
     1. To replicate the thread flow, ideal case should be to fetch the message for a thread. But since we are short on BE, we will maintain a conversationId Mapping and generate the conversationIds on the UI (lets keep Current time Epoch as a conversationId, this will obviously fail incase of a large number of users because 2 users can initiate a chat at the same time so ideally conversationIds must be maintained from BE)
 
+
+UI State management 
+For the Chat History I am follwing a nested sructure which recursively renders the chat to have infinite level of nesting in threads. 
+```
+[
+    {
+        "message": "Hey",
+        "id": "1",
+        "senderId": "01",
+        "thread": "2",
+        "threadMessages": [
+            {
+                "message": "Hey, Nested 1 level",
+                "id": "5",
+                "senderId": "01",
+                "threadMessages": [],
+                "path": [
+                    "1"
+                ],
+                "parentThread": "2"
+            },
+            {
+                "message": "What's Up, Nested 1 level",
+                "id": "6",
+                "senderId": "02",
+                "thread": "3",
+                "threadMessages": [
+                    {
+                        "message": "Hey, Nested 2 level",
+                        "id": "7",
+                        "senderId": "01",
+                        "threadMessages": [],
+                        "path": [
+                            "1",
+                            "6"
+                        ],
+                        "parentThread": "3"
+                    }
+                ],
+                "path": [
+                    "1"
+                ],
+                "parentThread": "2"
+            }
+        ],
+        "path": [],
+        "parentThread": "1"
+    },
+    {
+        "message": "What's Up",
+        "id": "2",
+        "senderId": "02",
+        "threadMessages": [],
+        "path": [],
+        "parentThread": "1"
+    },
+    {
+        "message": "Nothing Man, how about you ?",
+        "id": "3",
+        "senderId": "01",
+        "threadMessages": [],
+        "path": [],
+        "parentThread": "1"
+    },
+    {
+        "message": "Nothing much just solving problems!",
+        "id": "4",
+        "senderId": "02",
+        "threadMessages": [],
+        "path": [],
+        "parentThread": "1"
+    }
+]
+```
+
+parentThread is being used to update the Modal, since we don't have any DB.
