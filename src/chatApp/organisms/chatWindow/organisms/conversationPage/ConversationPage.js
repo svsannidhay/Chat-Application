@@ -12,7 +12,7 @@ import { EMPTY_OBJECT } from '../../../../constants/chatApp.general';
 import useFetchChatHistory from './hooks/useFetchChatHistory';
 
 // Helpers
-import { getChatListContainerStyle } from './helpers/conversationPage.general';
+import { getChatListContainerStyle, handleMessageSubmit } from './helpers/conversationPage.general';
 
 // Styles
 import style from './conversationPage.module.css';
@@ -32,7 +32,18 @@ const ConversationPage = (props) => {
     userMetadata
   );
 
-    // const onSubmit = useCallback(() => handleMessageSubmit(), []);
+  const onSubmit = useCallback(
+    (message) =>
+      handleMessageSubmit({
+        selectedUserId,
+        userMetadata,
+        currentUserInfo,
+        chatHistory,
+        setChatHistory,
+        message,
+      }),
+    [selectedUserId, userMetadata, currentUserInfo, chatHistory, setChatHistory]
+  );
 
   return (
     <div
@@ -49,7 +60,7 @@ const ConversationPage = (props) => {
         />
       </div>
       <MessageInput
-        // onSubmit={onSubmit}
+        onSubmit={onSubmit}
         chatMessageInputClassName={style.chatMessageInput}
         sendButtonClassName={style.sendButton}
         inputFieldClassName={style.inputField}
