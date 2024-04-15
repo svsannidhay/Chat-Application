@@ -14,6 +14,7 @@ const useFetchUserMetadata = () => {
   return {
     userMetadata,
     currentUserInfo,
+    setUserMetadata,
   }
 };
 

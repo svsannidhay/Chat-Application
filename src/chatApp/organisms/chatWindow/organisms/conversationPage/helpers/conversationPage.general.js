@@ -38,13 +38,20 @@ export const handleMessageSubmit = ({
   chatHistory = EMPTY_ARRAY,
   setChatHistory,
   message,
+  setUserMetadata,
 }) => {
 
   const selectedUserInfo = userMetadata[selectedUserId] || EMPTY_OBJECT;
-  const { conversationId } = selectedUserId;
+  const { conversationId } = selectedUserInfo;
 
   const updatedConversationId = conversationId || moment().valueOf();
-  selectedUserInfo.conversationId = updatedConversationId;
+  
+  const updatedUserMetadata = produce(userMetadata, (draftUserMetadata) => {
+    const selectedUserInfo = draftUserMetadata[selectedUserId] || EMPTY_OBJECT;
+    selectedUserInfo.conversationId = updatedConversationId;
+  });
+
+  setUserMetadata(updatedUserMetadata);
 
   const messageInfo = {
     message,

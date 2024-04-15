@@ -1,6 +1,9 @@
 import React, { useMemo, useCallback } from 'react';
 import PropTypes from 'prop-types';
 
+// Lodash
+import _noop from 'lodash/noop';
+
 // Components
 import MessageInput from './molecules/messageInput';
 import ChatList from './organisms/chatList';
@@ -12,13 +15,22 @@ import { EMPTY_OBJECT } from '../../../../constants/chatApp.general';
 import useFetchChatHistory from './hooks/useFetchChatHistory';
 
 // Helpers
-import { getChatListContainerStyle, handleMessageSubmit } from './helpers/conversationPage.general';
+import {
+  getChatListContainerStyle,
+  handleMessageSubmit,
+} from './helpers/conversationPage.general';
 
 // Styles
 import style from './conversationPage.module.css';
 
 const ConversationPage = (props) => {
-  const { height, selectedUserId, userMetadata, currentUserInfo } = props;
+  const {
+    height,
+    selectedUserId,
+    userMetadata,
+    currentUserInfo,
+    setUserMetadata,
+  } = props;
 
   const conversationPageContainerStyles = useMemo(() => ({ height }), [height]);
 
@@ -41,8 +53,16 @@ const ConversationPage = (props) => {
         chatHistory,
         setChatHistory,
         message,
+        setUserMetadata,
       }),
-    [selectedUserId, userMetadata, currentUserInfo, chatHistory, setChatHistory]
+    [
+      selectedUserId,
+      userMetadata,
+      currentUserInfo,
+      chatHistory,
+      setChatHistory,
+      setUserMetadata,
+    ]
   );
 
   return (
@@ -74,6 +94,7 @@ ConversationPage.propTypes = {
   selectedUserId: PropTypes.string,
   currentUserInfo: PropTypes.object,
   height: PropTypes.number,
+  setUserMetadata: PropTypes.func,
 };
 
 ConversationPage.defaultProps = {
@@ -81,6 +102,7 @@ ConversationPage.defaultProps = {
   currentUserInfo: EMPTY_OBJECT,
   selectedUserId: undefined,
   height: 0,
+  setUserMetadata: _noop,
 };
 
 export default ConversationPage;

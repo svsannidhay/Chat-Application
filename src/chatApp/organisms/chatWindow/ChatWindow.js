@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+// Lodash
+import _noop from 'lodash/noop';
+
 // Constants
 import { EMPTY_OBJECT } from '../../constants/chatApp.general';
 import { CHAT_WINDOW_HEADER_HEIGHT } from './constants/chatWindow.general';
@@ -14,7 +17,7 @@ import style from './chatWindow.module.css';
 
 
 const ChatWindow = (props) => {
-  const { userMetadata, currentUserInfo, selectedUserId, height } = props;
+  const { userMetadata, currentUserInfo, selectedUserId, height, setUserMetadata } = props;
 
   return (
     <div className={style.chatWindowContainer}>
@@ -28,6 +31,7 @@ const ChatWindow = (props) => {
         selectedUserId={selectedUserId}
         userMetadata={userMetadata}
         currentUserInfo={currentUserInfo}
+        setUserMetadata={setUserMetadata}
       />
     </div>
   );
@@ -38,6 +42,7 @@ ChatWindow.propTypes = {
   selectedUserId: PropTypes.string,
   currentUserInfo: PropTypes.object,
   height: PropTypes.number,
+  setUserMetadata: PropTypes.func,
 };
 
 ChatWindow.defaultProps = {
@@ -45,6 +50,7 @@ ChatWindow.defaultProps = {
   currentUserInfo: EMPTY_OBJECT,
   selectedUserId: undefined,
   height: 0,
+  setUserMetadata: _noop,
 };
 
 export default ChatWindow;

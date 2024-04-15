@@ -16,7 +16,7 @@ import ChatWindow from './organisms/chatWindow';
 
 const ChatApp = (props) => {
   const { height, width } = props;
-  const { userMetadata, currentUserInfo } = useFetchUserMetadata();
+  const { userMetadata, currentUserInfo, setUserMetadata } = useFetchUserMetadata();
 
   const [selectedUserId, setSelectedUserId] = useState(undefined);
 
@@ -34,6 +34,7 @@ const ChatApp = (props) => {
         currentUserInfo={currentUserInfo}
         selectedUserId={selectedUserId}
         height={height}
+        setUserMetadata={setUserMetadata}
       />
     </div>
   );
