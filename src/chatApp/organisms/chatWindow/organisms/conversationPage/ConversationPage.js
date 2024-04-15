@@ -8,6 +8,9 @@ import ChatList from './organisms/chatList';
 // Constants
 import { EMPTY_OBJECT } from '../../../../constants/chatApp.general';
 
+// Custom Hooks
+import useFetchChatHistory from './hooks/useFetchChatHistory';
+
 // Helpers
 import { getChatListContainerStyle } from './helpers/conversationPage.general';
 
@@ -19,9 +22,17 @@ const ConversationPage = (props) => {
 
   const conversationPageContainerStyles = useMemo(() => ({ height }), [height]);
 
-  const onSubmit = useCallback(() => {}, []);
+  const chatListContainerStyle = useMemo(
+    () => getChatListContainerStyle(height),
+    [height]
+  );
 
-  const chatListContainerStyle = useMemo(() => getChatListContainerStyle(height), [height]);
+  const { chatHistory, setChatHistory } = useFetchChatHistory(
+    selectedUserId,
+    userMetadata
+  );
+
+    // const onSubmit = useCallback(() => handleMessageSubmit(), []);
 
   return (
     <div
@@ -29,10 +40,16 @@ const ConversationPage = (props) => {
       style={conversationPageContainerStyles}
     >
       <div style={chatListContainerStyle} className={style.chatListContainer}>
-        <ChatList selectedUserId={selectedUserId} userMetadata={userMetadata} currentUserInfo={currentUserInfo} />
+        <ChatList
+          selectedUserId={selectedUserId}
+          userMetadata={userMetadata}
+          currentUserInfo={currentUserInfo}
+          chatHistory={chatHistory}
+          setChatHistory={setChatHistory}
+        />
       </div>
       <MessageInput
-        onSubmit={onSubmit}
+        // onSubmit={onSubmit}
         chatMessageInputClassName={style.chatMessageInput}
         sendButtonClassName={style.sendButton}
         inputFieldClassName={style.inputField}

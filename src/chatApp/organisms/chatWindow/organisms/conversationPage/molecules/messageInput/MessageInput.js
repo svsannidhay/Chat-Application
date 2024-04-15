@@ -7,7 +7,7 @@ import _noop from 'lodash/noop';
 const MessageInput = (props) => {
   const [inputValue, setInputValue] = useState('');
 
-  const { onSubmit, chatMessageInputClassName,  sendButtonClassName, inputFieldClassName } = props;
+  const { onSubmit, chatMessageInputClassName,  sendButtonClassName, inputFieldClassName, placeholderText } = props;
 
   const handleChange = useCallback((event) => {
     setInputValue(event.target.value);
@@ -28,7 +28,7 @@ const MessageInput = (props) => {
         className={inputFieldClassName}
         value={inputValue}
         onChange={handleChange}
-        placeholder='Type a message...'
+        placeholder={placeholderText}
       />
       <button type='submit' className={sendButtonClassName}>
         Send
@@ -42,6 +42,7 @@ MessageInput.propTypes = {
   chatMessageInputClassName: PropTypes.string,  
   sendButtonClassName: PropTypes.string, 
   inputFieldClassName: PropTypes.string,
+  placeholderText: PropTypes.string,
 };
 
 MessageInput.defaultProps = {
@@ -49,6 +50,7 @@ MessageInput.defaultProps = {
   chatMessageInputClassName: '',  
   sendButtonClassName: '', 
   inputFieldClassName: '',
+  placeholderText: 'Type a Message...',
 };
 
 export default memo(MessageInput);

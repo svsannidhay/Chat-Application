@@ -1,9 +1,6 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 
-// Custom hooks
-import useFetchChatHistory from './hooks/useFetchChatHistory';
-
 // Constants
 import { EMPTY_OBJECT } from '../../../../../../constants/chatApp.general';
 
@@ -14,9 +11,7 @@ import ChatCard from './molecules/chatCard';
 import style from './chatList.module.css';
 
 const ChatList = (props) => {
-  const { currentUserInfo, userMetadata, selectedUserId } = props;
-
-  const { chatHistory, setChatHistory } = useFetchChatHistory(selectedUserId);  
+  const { currentUserInfo, userMetadata, selectedUserId, chatHistory, setChatHistory } = props;
 
 
   const renderChatCard = useCallback((chat) => {
@@ -25,10 +20,12 @@ const ChatList = (props) => {
       userMetadata={userMetadata}
       selectedUserId={selectedUserId}
       chat={chat}
+      chatHistory={chatHistory}
       setChatHistory={setChatHistory}
       className={style.chatCardContainer}
+      currentUserInfo={currentUserInfo}
     />);
-  }, [userMetadata, selectedUserId, setChatHistory]);
+  }, [userMetadata, selectedUserId, setChatHistory, chatHistory, currentUserInfo]);
 
   return (
     <div>
@@ -41,12 +38,14 @@ ChatList.propTypes = {
   currentUserInfo: PropTypes.object,
   userMetadata: PropTypes.object,
   selectedUserId: PropTypes.string,
+  chatHistory: PropTypes.object,
 }
 
 ChatList.defaultProps = {
   currentUserInfo: EMPTY_OBJECT, 
   userMetadata: EMPTY_OBJECT,
   selectedUserId: undefined,
+  chatHistory: EMPTY_OBJECT,
 };
 
 export default ChatList
