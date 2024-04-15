@@ -1,25 +1,25 @@
 const CONVERSATION_MAPPING = {
   "1": [
     {
-      message: "Hey",
+      message: "These are UI hardcoded for my user.",
       id: '1',
       senderId: '01',
       thread: "2",
     },
     {
-      message: "What's Up",
+      message: "I have put these for your reference.",
       id: '2',
       senderId: '02',
       thread: undefined,
     },
     {
-      message: "Nothing Man, how about you ?",
+      message: "This was a great project to work on",
       id: '3',
       senderId: '01',
       thread: undefined,
     },
     {
-      message: "Nothing much just solving problems!",
+      message: "Learned how complicated the slack and teams actually are",
       id: '4',
       senderId: '02',
       thread: undefined,
@@ -27,13 +27,13 @@ const CONVERSATION_MAPPING = {
   ],
   "2": [
     {
-      message: "Hey, Nested 1 level",
+      message: "Nesting example",
       id: '5',
       senderId: '01',
       thread: undefined,
     },
     {
-      message: "What's Up, Nested 1 level",
+      message: "Level 1 Nesting",
       id: '6',
       senderId: '02',
       thread: "3",
@@ -41,7 +41,7 @@ const CONVERSATION_MAPPING = {
   ],
   "3": [
     {
-      message: "Hey, Nested 2 level",
+      message: "Level 2 Nesting",
       id: '7',
       senderId: '01',
       thread: undefined,
