@@ -39,7 +39,6 @@ const useFetchChatHistory = (selectedUserId, userMetadata) => {
     const flatChatHistory = CONVERSATION_MAPPING[conversationId] || EMPTY_ARRAY;
     const nestedChatHistory = createNestedChatHistoryTree(flatChatHistory, conversationId);
     setChatHistory(nestedChatHistory);
-    console.log(nestedChatHistory);
   }, [selectedUserId, userMetadata]);
   
   return {

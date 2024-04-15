@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 
 // Constants
-import { EMPTY_OBJECT } from '../../../../../../constants/chatApp.general';
+import { EMPTY_ARRAY, EMPTY_OBJECT } from '../../../../../../constants/chatApp.general';
 
 // Components
 import ChatCard from './molecules/chatCard';
@@ -15,6 +15,7 @@ const ChatList = (props) => {
 
 
   const renderChatCard = useCallback((chat) => {
+    const { id } = chat;
     return ( 
     <ChatCard
       userMetadata={userMetadata}
@@ -24,6 +25,7 @@ const ChatList = (props) => {
       setChatHistory={setChatHistory}
       className={style.chatCardContainer}
       currentUserInfo={currentUserInfo}
+      key={chat.id}
     />);
   }, [userMetadata, selectedUserId, setChatHistory, chatHistory, currentUserInfo]);
 
@@ -38,14 +40,14 @@ ChatList.propTypes = {
   currentUserInfo: PropTypes.object,
   userMetadata: PropTypes.object,
   selectedUserId: PropTypes.string,
-  chatHistory: PropTypes.object,
+  chatHistory: PropTypes.array,
 }
 
 ChatList.defaultProps = {
   currentUserInfo: EMPTY_OBJECT, 
   userMetadata: EMPTY_OBJECT,
   selectedUserId: undefined,
-  chatHistory: EMPTY_OBJECT,
+  chatHistory: EMPTY_ARRAY,
 };
 
 export default ChatList

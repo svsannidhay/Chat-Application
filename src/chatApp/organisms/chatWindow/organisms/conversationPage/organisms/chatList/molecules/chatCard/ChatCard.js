@@ -66,6 +66,7 @@ const ChatCard = (props) => {
           styleOverrides={nestedMessageListStyle}
           chatHistory={chatHistory}
           currentUserInfo={currentUserInfo}
+          key={chat.id}
         />
       );
     },
@@ -113,7 +114,7 @@ ChatCard.propTypes = {
   styleOverrides: PropTypes.object,
   chatHistory: PropTypes.array,
   currentUserInfo: PropTypes.object,
-  contentClassName: PropTypes.object,
+  contentClassName: PropTypes.string,
 };
 
 ChatCard.defaultProps = {

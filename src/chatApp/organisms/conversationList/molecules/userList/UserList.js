@@ -40,6 +40,7 @@ const UserList = (props) => {
         <div
           className={`${style.user} ${selectedClassName}`}
           onClick={() => setSelectedUserId(userId)}
+          key={userId}
         >
           <img className={style.avatar} src={avatar} alt={AVATAR_ALT} />
           <div className={style.userName}>{displayName}</div>
